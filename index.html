@@ -170,7 +170,11 @@ let key =
 document.getElementById("adminKey").value;
 
 if(key === "hemlobhai"){
+document.getElementById("verifyResult").innerHTML =
+"👑 Owner is Visiting 🚗💨";
 
+document.getElementById("adminPanel").style.display =
+"block";
 document.getElementById("verifyResult").innerHTML =
 "✅ Admin Verified";
 
@@ -204,3 +208,23 @@ document.getElementById("verifyResult").innerHTML =
 <button onclick="verifyAdmin()">Verify</button>
 <p id="verifyResult"></p>
 </div>
+<div id="adminPanel" style="display:none;" class="card">
+
+<h2>👑 Admin Panel</h2>
+
+<button onclick="setTheme('blue')">🔵 Blue Neon</button>
+<button onclick="setTheme('purple')">🟣 Purple Neon</button>
+<button onclick="setTheme('green')">🟢 Green Neon</button>
+
+<br><br>
+
+<input type="text" id="announcementText"
+placeholder="Write announcement">
+
+<button onclick="updateAnnouncement()">
+📢 Update
+</button>
+
+</div>
+
+<div id="announcement"></div>
