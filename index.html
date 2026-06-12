@@ -164,7 +164,24 @@ document.getElementById("fileLink").value;
 window.open(link,"_blank");
 
 }
+function verifyAdmin(){
 
+let key =
+document.getElementById("adminKey").value;
+
+if(key === "hemlobhai"){
+
+document.getElementById("verifyResult").innerHTML =
+"✅ Admin Verified";
+
+}else{
+
+document.getElementById("verifyResult").innerHTML =
+"❌ Access Denied";
+
+}
+
+}
 </script>
 
 </body>
