@@ -7,48 +7,56 @@
 
 <style>
 body{
-    background:#0a0a0a;
-    color:white;
-    font-family:Arial,sans-serif;
-    text-align:center;
-    padding:20px;
+background:#0a0a0a;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+padding:20px;
 }
 
 .logo{
-    color:#00ffff;
-    text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;
+color:#00ffff;
+text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;
 }
 
 .card{
-    background:#111;
-    border:1px solid #00ffff;
-    border-radius:15px;
-    padding:20px;
-    margin:20px auto;
-    max-width:500px;
-    box-shadow:0 0 15px #00ffff;
+background:#111;
+border:1px solid #00ffff;
+border-radius:15px;
+padding:20px;
+margin:20px auto;
+max-width:500px;
+box-shadow:0 0 15px #00ffff;
 }
 
 input{
-    width:80%;
-    padding:10px;
-    margin:10px;
-    border-radius:10px;
-    border:none;
+width:80%;
+padding:10px;
+margin:10px;
+border-radius:10px;
+border:none;
 }
 
 button{
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    background:#00ffff;
-    font-weight:bold;
-    cursor:pointer;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#00ffff;
+font-weight:bold;
+cursor:pointer;
+margin:5px;
 }
 
 img{
-    margin-top:15px;
-    max-width:200px;
+margin-top:15px;
+max-width:200px;
+}
+
+#announcement{
+margin:20px;
+font-size:20px;
+font-weight:bold;
+color:#00ffff;
 }
 </style>
 </head>
@@ -57,168 +65,102 @@ img{
 
 <h1 class="logo">⚡ NEON TOOLS HUB ⚡</h1>
 
+<div id="announcement"></div>
+
 <div class="card">
-    <h2>QR Generator</h2>
+<h2>QR Generator</h2>
 
-    <input type="text" id="qrText"
-    placeholder="Enter text or link">
+<input type="text" id="qrText"
+placeholder="Enter text or link">
 
-    <br>
+<br>
 
-    <button onclick="generateQR()">
-        Generate QR
-    </button>
+<button onclick="generateQR()">
+Generate QR
+</button>
 
-    <div id="qrResult"></div>
+<div id="qrResult"></div>
 </div>
 
 <div class="card">
-    <h2>Barcode Generator</h2>
+<h2>Barcode Generator</h2>
 
-    <input type="text" id="barcodeText"
-    placeholder="Enter barcode text">
+<input type="text" id="barcodeText"
+placeholder="Enter barcode text">
 
-    <br>
+<br>
 
-    <button onclick="generateBarcode()">
-        Generate Barcode
-    </button>
+<button onclick="generateBarcode()">
+Generate Barcode
+</button>
 
-    <div id="barcodeResult"></div>
+<div id="barcodeResult"></div>
 </div>
 
 <div class="card">
-    <h2>Download Center</h2>
+<h2>Download Center</h2>
 
-    <input type="text" id="fileLink"
-    placeholder="Paste your file link">
+<input type="text" id="fileLink"
+placeholder="Paste your file link">
 
-    <br>
+<br>
 
-    <button onclick="openLink()">
-        Open Link
-    </button>
+<button onclick="openLink()">
+Open Link
+</button>
 </div>
+
 <div class="card">
-    <h2>PDF Generator</h2>
+<h2>PDF Generator</h2>
 
-    <input type="text" id="pdfText"
-    placeholder="Write text for PDF">
-
-    <br><br>
-
-    <button onclick="generatePDF()">
-        Generate PDF
-    </button>
-</div>
-<script>
-function generatePDF(){
-alert("PDF button clicked");
-let text =
-document.getElementById("pdfText").value;
-
-let win = window.open("", "_blank");
-
-win.document.write(`
-<html>
-<head>
-<title>PDF</title>
-</head>
-<body style="font-family:Arial;padding:20px;">
-<h2>Generated PDF</h2>
-<p>${text}</p>
-</body>
-</html>
-`);
-
-win.document.close();
-
-win.print();
-
-}
-function generateQR(){
-
-let text =
-document.getElementById("qrText").value;
-
-document.getElementById("qrResult").innerHTML=
-`<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}">`;
-
-}
-
-function generateBarcode(){
-
-let text =
-document.getElementById("barcodeText").value;
-
-document.getElementById("barcodeResult").innerHTML=
-`<img src="https://barcodeapi.org/api/${encodeURIComponent(text)}">`;
-
-}
-
-function openLink(){
-
-let link =
-document.getElementById("fileLink").value;
-
-window.open(link,"_blank");
-
-}
-function verifyAdmin(){
-
-let key =
-document.getElementById("adminKey").value;
-
-if(key === "hemlobhai"){
-document.getElementById("verifyResult").innerHTML =
-"👑 Owner is Visiting 🚗💨";
-
-document.getElementById("adminPanel").style.display =
-"block";
-document.getElementById("verifyResult").innerHTML =
-"✅ Admin Verified";
-
-}else{
-
-document.getElementById("verifyResult").innerHTML =
-"❌ Access Denied";
-
-}
-
-}
-</script>
-
-</body>
-</html>
-<div class="card">
-    <h2>PDF Generator</h2>
-
-    <input type="text" id="pdfText"
-    placeholder="Write text for PDF">
-
-    <br>
-
-    <button onclick="generatePDF()">
-        Generate PDF
-    </button>
-</div>
-<div class="card">
-<h2>Admin Verification</h2>
-<input type="password" id="adminKey" placeholder="Enter Secret Key">
-<button onclick="verifyAdmin()">Verify</button>
-<p id="verifyResult"></p>
-</div>
-<div id="adminPanel" style="display:none;" class="card">
-
-<h2>👑 Admin Panel</h2>
-
-<button onclick="setTheme('blue')">🔵 Blue Neon</button>
-<button onclick="setTheme('purple')">🟣 Purple Neon</button>
-<button onclick="setTheme('green')">🟢 Green Neon</button>
+<input type="text" id="pdfText"
+placeholder="Write text for PDF">
 
 <br><br>
 
-<input type="text" id="announcementText"
+<button onclick="generatePDF()">
+Generate PDF
+</button>
+</div>
+
+<div class="card">
+<h2>Admin Verification</h2>
+
+<input type="password"
+id="adminKey"
+placeholder="Enter Secret Key">
+
+<br><br>
+
+<button onclick="verifyAdmin()">
+Verify
+</button>
+
+<p id="verifyResult"></p>
+</div>
+
+<div id="adminPanel"
+style="display:none;"
+class="card">
+
+<h2>👑 Admin Panel</h2>
+
+<button onclick="setTheme('blue')">
+🔵 Blue Neon
+</button>
+
+<button onclick="setTheme('purple')">
+🟣 Purple Neon
+</button>
+
+<button onclick="setTheme('green')">
+🟢 Green Neon
+</button>
+
+<br><br>
+
+<input type="text"
+id="announcementText"
 placeholder="Write announcement">
 
 <button onclick="updateAnnouncement()">
@@ -227,4 +169,101 @@ placeholder="Write announcement">
 
 </div>
 
-<div id="announcement"></div>
+<script>
+
+function generateQR(){
+
+let text=document.getElementById("qrText").value;
+
+document.getElementById("qrResult").innerHTML=
+`<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}">`;
+
+}
+
+function generateBarcode(){
+
+let text=document.getElementById("barcodeText").value;
+
+document.getElementById("barcodeResult").innerHTML=
+`<img src="https://barcodeapi.org/api/${encodeURIComponent(text)}">`;
+
+}
+
+function openLink(){
+
+let link=document.getElementById("fileLink").value;
+
+window.open(link,"_blank");
+
+}
+
+function generatePDF(){
+
+let text=document.getElementById("pdfText").value;
+
+let win=window.open("","_blank");
+
+win.document.write(`
+<html>
+<body style="font-family:Arial;padding:20px;">
+<h2>Generated PDF</h2>
+<p>${text}</p>
+</body>
+</html>
+`);
+
+win.document.close();
+win.print();
+
+}
+
+function verifyAdmin(){
+
+let key=document.getElementById("adminKey").value;
+
+if(key==="hemlobhai"){
+
+document.getElementById("verifyResult").innerHTML=
+"👑 Owner is Visiting 🚗💨";
+
+document.getElementById("adminPanel").style.display=
+"block";
+
+}else{
+
+document.getElementById("verifyResult").innerHTML=
+"❌ Access Denied";
+
+}
+
+}
+
+function setTheme(color){
+
+if(color==="blue"){
+document.body.style.background="#001f3f";
+}
+
+if(color==="purple"){
+document.body.style.background="#2b0040";
+}
+
+if(color==="green"){
+document.body.style.background="#003d1f";
+}
+
+}
+
+function updateAnnouncement(){
+
+let text=document.getElementById("announcementText").value;
+
+document.getElementById("announcement").innerHTML=
+"📢 " + text;
+
+}
+
+</script>
+
+</body>
+</html>
