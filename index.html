@@ -99,9 +99,43 @@ img{
         Open Link
     </button>
 </div>
+<div class="card">
+    <h2>PDF Generator</h2>
 
+    <input type="text" id="pdfText"
+    placeholder="Write text for PDF">
+
+    <br><br>
+
+    <button onclick="generatePDF()">
+        Generate PDF
+    </button>
+</div>
 <script>
+function generatePDF(){
 
+let text =
+document.getElementById("pdfText").value;
+
+let win = window.open("", "_blank");
+
+win.document.write(`
+<html>
+<head>
+<title>PDF</title>
+</head>
+<body style="font-family:Arial;padding:20px;">
+<h2>Generated PDF</h2>
+<p>${text}</p>
+</body>
+</html>
+`);
+
+win.document.close();
+
+win.print();
+
+}
 function generateQR(){
 
 let text =
