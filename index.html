@@ -1,39 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Tools Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Tools Hub</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+body{
+    background:#0a0a0a;
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    padding:20px;
+}
+
+.logo{
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;
+}
+
+.card{
+    background:#111;
+    border:1px solid #00ffff;
+    border-radius:15px;
+    padding:20px;
+    margin:20px auto;
+    max-width:500px;
+    box-shadow:0 0 15px #00ffff;
+}
+
+input{
+    width:80%;
+    padding:10px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#00ffff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+img{
+    margin-top:15px;
+    max-width:200px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="container">
+<h1 class="logo">⚡ NEON TOOLS HUB ⚡</h1>
 
-        <h1 class="logo">⚡ Neon Tools Hub ⚡</h1>
+<div class="card">
+    <h2>QR Generator</h2>
 
-        <div class="card">
-            <h2>QR Generator</h2>
-            <p>Create QR Codes instantly.</p>
-            <button>Open</button>
-        </div>
+    <input type="text" id="qrText"
+    placeholder="Enter text or link">
 
-        <div class="card">
-            <h2>Barcode Generator</h2>
-            <p>Create Barcodes instantly.</p>
-            <button>Open</button>
-        </div>
+    <br>
 
-        <div class="card">
-            <h2>Download Center</h2>
-            <p>Download your files.</p>
-            <button>Open</button>
-        </div>
+    <button onclick="generateQR()">
+        Generate QR
+    </button>
 
-    </div>
+    <div id="qrResult"></div>
+</div>
 
-    <script src="app.js"></script>
+<div class="card">
+    <h2>Barcode Generator</h2>
+
+    <input type="text" id="barcodeText"
+    placeholder="Enter barcode text">
+
+    <br>
+
+    <button onclick="generateBarcode()">
+        Generate Barcode
+    </button>
+
+    <div id="barcodeResult"></div>
+</div>
+
+<div class="card">
+    <h2>Download Center</h2>
+
+    <input type="text" id="fileLink"
+    placeholder="Paste your file link">
+
+    <br>
+
+    <button onclick="openLink()">
+        Open Link
+    </button>
+</div>
+
+<script>
+
+function generateQR(){
+
+let text =
+document.getElementById("qrText").value;
+
+document.getElementById("qrResult").innerHTML=
+`<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}">`;
+
+}
+
+function generateBarcode(){
+
+let text =
+document.getElementById("barcodeText").value;
+
+document.getElementById("barcodeResult").innerHTML=
+`<img src="https://barcodeapi.org/api/${encodeURIComponent(text)}">`;
+
+}
+
+function openLink(){
+
+let link =
+document.getElementById("fileLink").value;
+
+window.open(link,"_blank");
+
+}
+
+</script>
 
 </body>
 </html>
